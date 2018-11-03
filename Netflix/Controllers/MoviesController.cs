@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,18 @@ namespace Netflix.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         //
         // GET: /Movies/
         public ActionResult Random()
@@ -30,22 +43,55 @@ namespace Netflix.Controllers
         }
         public ActionResult Edit(int id)
         {
-            return Content("id=" + id);
+            ViewBag.Genre = _context.Genres.ToList();
+            var movieInDb = _context.Movies.SingleOrDefault(a => a.Id == id);
+            if (movieInDb == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View("Save", movieInDb);
+        }
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var movies = _context.Movies.Include(a => a.Genre).ToList();
+            return View(movies);
         }
 
-        public ActionResult Index(int? pageIndex , string sortBy)
+        [HttpPost]
+        public ActionResult Save(Movie movie)
         {
-            if (!pageIndex.HasValue)
+            ViewBag.Genre = _context.Genres.ToList();
+            if (movie.Id==0)
             {
-                pageIndex = 1;
+                _context.Movies.Add(movie);
             }
 
-            if (string.IsNullOrWhiteSpace(sortBy))
+            else
             {
-                sortBy = "Name";
+                var movieInDb = _context.Movies.Single(a => a.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.DateAdded = movie.DateAdded;
             }
+            _context.SaveChanges();
+           // var movies = _context.Movies.Include(a => a.Genre).ToList();
+            return RedirectToAction("Index");
+        }
 
-            return Content(String.Format("PageIndex= {0}& sortBy = {1}", pageIndex, sortBy));
+        public ActionResult Save()
+        {
+            ViewBag.Genre = _context.Genres.ToList();
+
+            return View();
+        }
+        public ActionResult Details(int id)
+
+        {
+            var movie = _context.Movies.Include(a => a.Genre).FirstOrDefault(a => a.Id == id);
+            return View(movie);
         }
 
         [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,30)}")]
