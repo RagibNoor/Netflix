@@ -165,14 +165,40 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811022241497_InitialModel.cs" />
-    <Compile Include="Migrations\201811022241497_InitialModel.Designer.cs">
-      <DependentUpon>201811022241497_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201811031317357_initialMigration.cs" />
+    <Compile Include="Migrations\201811031317357_initialMigration.Designer.cs">
+      <DependentUpon>201811031317357_initialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031324490_populateMembership.cs" />
+    <Compile Include="Migrations\201811031324490_populateMembership.Designer.cs">
+      <DependentUpon>201811031324490_populateMembership.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031442323_addNameInMembershipType.cs" />
+    <Compile Include="Migrations\201811031442323_addNameInMembershipType.Designer.cs">
+      <DependentUpon>201811031442323_addNameInMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031443447_PopulateNameToMemberShipType.cs" />
+    <Compile Include="Migrations\201811031443447_PopulateNameToMemberShipType.Designer.cs">
+      <DependentUpon>201811031443447_PopulateNameToMemberShipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031453223_addBirthdateToCustomer.cs" />
+    <Compile Include="Migrations\201811031453223_addBirthdateToCustomer.Designer.cs">
+      <DependentUpon>201811031453223_addBirthdateToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031752248_addTableGenre.cs" />
+    <Compile Include="Migrations\201811031752248_addTableGenre.Designer.cs">
+      <DependentUpon>201811031752248_addTableGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031755256_populateGenres.cs" />
+    <Compile Include="Migrations\201811031755256_populateGenres.Designer.cs">
+      <DependentUpon>201811031755256_populateGenres.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -241,8 +267,26 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811022241497_InitialModel.resx">
-      <DependentUpon>201811022241497_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811031317357_initialMigration.resx">
+      <DependentUpon>201811031317357_initialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031324490_populateMembership.resx">
+      <DependentUpon>201811031324490_populateMembership.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031442323_addNameInMembershipType.resx">
+      <DependentUpon>201811031442323_addNameInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031443447_PopulateNameToMemberShipType.resx">
+      <DependentUpon>201811031443447_PopulateNameToMemberShipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031453223_addBirthdateToCustomer.resx">
+      <DependentUpon>201811031453223_addBirthdateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031752248_addTableGenre.resx">
+      <DependentUpon>201811031752248_addTableGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031755256_populateGenres.resx">
+      <DependentUpon>201811031755256_populateGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

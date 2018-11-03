@@ -7,13 +7,13 @@ namespace Netflix.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class InitialModel : IMigrationMetadata
+    public sealed partial class populateMembership : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(populateMembership));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811022241497_InitialModel"; }
+            get { return "201811031324490_populateMembership"; }
         }
         
         string IMigrationMetadata.Source

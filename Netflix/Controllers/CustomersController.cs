@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,20 +10,32 @@ namespace Netflix.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+           
+        }
+
         //
         // GET: /Customers/
         public ActionResult Index()
         {
-            var customer = GetCustomers();
+            var customer = _context.Customers.Include(a => a.MembershipType).ToList();
             return View(customer);
         }
 
         public ActionResult Details(int id)
         {
-            string name = null;
-            int flag = 0;
 
-            var customer = GetCustomers().Find(x => x.Id == id);
+
+
+            var customer = _context.Customers.Include(a=>a.MembershipType).SingleOrDefault(x => x.Id == id);
             if (customer!=null)
             {
                 return View(customer);
@@ -32,15 +45,6 @@ namespace Netflix.Controllers
                 return HttpNotFound();
             }
         }
-        public List<Customer> GetCustomers()
-        {
-            var customers = new List<Customer>
-            {
-                new Customer{Name = "C1", Id = 1},
-                new Customer{Name = "C2" , Id = 2}
-            };
-
-            return customers;
-        } 
+       
 	}
 }
