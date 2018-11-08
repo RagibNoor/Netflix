@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using  System.Data.Entity;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using AutoMapper;
 using Netflix.Dto;
@@ -21,13 +23,13 @@ namespace Netflix.Controllers.Api
         //GET/Api/Customers
         public IHttpActionResult GetCustomers()
         {
-            return Ok(_context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>));
+            return Ok(_context.Customers.Include(x=>x.MembershipType).ToList().Select(Mapper.Map<Customer,CustomerDto>));
         } 
 
         //GET/api/customers/1
         public IHttpActionResult GetCustomer(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(a => a.Id == id);
+            var customer = _context.Customers.Include(x=>x.MembershipType).SingleOrDefault(a => a.Id == id);
             if (customer == null)
             {
                 return NotFound();

@@ -16,6 +16,7 @@ namespace Netflix.App_Start
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<Movie, MovieDto>();
             Mapper.CreateMap<Genre, GenreDto>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
 
 
 
@@ -23,6 +24,7 @@ namespace Netflix.App_Start
             Mapper.CreateMap<CustomerDto, Customer>().ForMember(x => x.Id, x => x.Ignore());
             Mapper.CreateMap<MovieDto, Movie>().ForMember(x => x.Id, x => x.Ignore());
             Mapper.CreateMap<GenreDto, Genre>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
         }
     }
 }

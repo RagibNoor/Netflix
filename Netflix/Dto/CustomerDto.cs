@@ -15,6 +15,7 @@ namespace Netflix.Dto
         public string Name { get; set; }
 
         public bool IsSubscribed { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
       
 
         public byte MembershipTypeId { get; set; }
